@@ -14,7 +14,6 @@ public class Application {
 		List<Complaint> complaints = complaint.loadCompalintsFromCsv();
 		ComplaintService complaintService = new ComplaintService();
 
-
 		Scanner scanner = new Scanner(System.in);
 		int choice = 0;
 		do {
@@ -43,7 +42,6 @@ public class Application {
 				break;
 			}
 		} while (choice != 0);
-	
 
 	}
 }
