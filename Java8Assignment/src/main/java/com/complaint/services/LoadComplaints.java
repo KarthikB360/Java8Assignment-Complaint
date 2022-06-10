@@ -22,12 +22,11 @@ public class LoadComplaints {
 			FileReader filereader = new FileReader(file);
 			CSVReader csvReader = new CSVReaderBuilder(filereader).withSkipLines(1).build();
 			List<String[]> allData = csvReader.readAll();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-			
+
 			for (String[] row : allData) {
 				Complaint complaint = new Complaint();
 				complaint.setComplaintID(Integer.parseInt(row[13]));
-				complaint.setDateReceived(LocalDate.parse(row[0], formatter));
+				complaint.setDateReceived(formatDate(row[0]));
 				complaint.setProduct(row[1]);
 				complaint.setSubProduct(row[2]);
 				complaint.setIssue(row[3]);
@@ -36,7 +35,7 @@ public class LoadComplaints {
 				complaint.setState(row[6]);
 				complaint.setZipCode(row[7]);
 				complaint.setSubmittedVia(row[8]);
-				complaint.setDateClosed(LocalDate.parse(row[9], formatter));
+				complaint.setDateClosed(formatDate(row[9]));
 				complaint.setCompanyResponse(row[10]);
 				complaint.setTimelyResponse((row[11].equals("Yes")) ? true : false);
 				complaint.setConsumerDispute((row[12].equals("Yes")) ? true : false);
@@ -48,6 +47,16 @@ public class LoadComplaints {
 			e.printStackTrace();
 		}
 		return complaints;
+	}
+
+	public LocalDate formatDate(String dateString) {
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+
+		if (dateString.contains("-")) {
+			return LocalDate.parse(dateString, formatter2);
+		}
+		return LocalDate.parse(dateString, formatter1);
 	}
 
 }
