@@ -31,18 +31,18 @@ class TradeServiceTest {
 	@InjectMocks
 	TradeService tradeService;
 
-//	@Test
-//	public void test_getTradeDetails() {
-//		Mockito.when(tradeService.getTradeRegion(123456)).thenReturn(Region.LONDON);
-//		Mockito.when(regionalDaoManager.getRegionalDao(Region.LONDON)).thenReturn(new LondonDao());
-//		Mockito.when(dao.getTradeDetails(Mockito.any(Long.class))).thenReturn(new TradeDetails());
-//		Mockito.when(tradeService.getTradeDetails(123456)).thenReturn(new TradeDetails());
-//
-//		TradeDetails actualTradeDetails = tradeService.getTradeDetails(123456);
-//		System.out.println("Obj: "+actualTradeDetails);
-//
-//		assertNotNull(actualTradeDetails);
-//	}
+	@Test
+	public void test_getTradeDetails() {
+		Mockito.when(tradeService.getTradeRegion(123456)).thenReturn(Region.LONDON);
+		Mockito.when(regionalDaoManager.getRegionalDao(Region.LONDON)).thenReturn(new LondonDao());
+		Mockito.when(dao.getTradeDetails(Mockito.any(Long.class))).thenReturn(new TradeDetails());
+		Mockito.when(tradeService.getTradeDetails(123456)).thenReturn(new TradeDetails());
+
+		TradeDetails actualTradeDetails = tradeService.getTradeDetails(123456);
+		System.out.println("Obj: " + actualTradeDetails);
+
+		assertNotNull(actualTradeDetails);
+	}
 
 	@Test
 	public void test_getTradeRegionLondonCheck() {
